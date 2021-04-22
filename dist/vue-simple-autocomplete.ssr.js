@@ -1,0 +1,387 @@
+'use strict';function _slicedToArray(arr, i) {
+  return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest();
+}
+
+function _arrayWithHoles(arr) {
+  if (Array.isArray(arr)) return arr;
+}
+
+function _iterableToArrayLimit(arr, i) {
+  var _i = arr && (typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"]);
+
+  if (_i == null) return;
+  var _arr = [];
+  var _n = true;
+  var _d = false;
+
+  var _s, _e;
+
+  try {
+    for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) {
+      _arr.push(_s.value);
+
+      if (i && _arr.length === i) break;
+    }
+  } catch (err) {
+    _d = true;
+    _e = err;
+  } finally {
+    try {
+      if (!_n && _i["return"] != null) _i["return"]();
+    } finally {
+      if (_d) throw _e;
+    }
+  }
+
+  return _arr;
+}
+
+function _unsupportedIterableToArray(o, minLen) {
+  if (!o) return;
+  if (typeof o === "string") return _arrayLikeToArray(o, minLen);
+  var n = Object.prototype.toString.call(o).slice(8, -1);
+  if (n === "Object" && o.constructor) n = o.constructor.name;
+  if (n === "Map" || n === "Set") return Array.from(o);
+  if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen);
+}
+
+function _arrayLikeToArray(arr, len) {
+  if (len == null || len > arr.length) len = arr.length;
+
+  for (var i = 0, arr2 = new Array(len); i < len; i++) arr2[i] = arr[i];
+
+  return arr2;
+}
+
+function _nonIterableRest() {
+  throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.");
+}//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+var script = {
+  name: "VueSimpleAutocomplete",
+  props: {
+    items: {
+      type: Array,
+      required: false,
+      default: function _default() {
+        return [];
+      }
+    },
+    isLoading: {
+      type: Boolean,
+      default: false
+    },
+    isLoadingMessage: {
+      type: String,
+      default: "Carregando resultados..."
+    },
+    noResultsMessage: {
+      type: String,
+      default: "Nenhum resultado encontrado"
+    },
+    getDisplayValue: {
+      type: Function,
+      default: function _default(item) {
+        return item;
+      }
+    },
+    selectedItem: {},
+    minLength: {
+      type: Number,
+      default: 1
+    },
+    placeholder: {
+      type: String,
+      default: ""
+    }
+  },
+  data: function data() {
+    return {
+      results: [],
+      search: this.getDisplayValue(this.selectedItem),
+      arrowCounter: 0,
+      isFocused: false
+    };
+  },
+  methods: {
+    onChange: function onChange() {
+      // Let's warn the parent that a change was made
+      if (this.search.length < this.minLength) {
+        this.$emit("change", "");
+      } else {
+        this.$emit("change", this.search);
+      }
+
+      this.isFocused = true;
+    },
+    setResult: function setResult(result) {
+      this.search = this.getDisplayValue(result);
+      this.isFocused = false;
+      this.arrowCounter = -1;
+      this.$emit("value-selected", result);
+    },
+    onArrowDown: function onArrowDown() {
+      if (this.arrowCounter < this.items.length - 1) {
+        this.arrowCounter++;
+      }
+    },
+    onArrowUp: function onArrowUp() {
+      if (this.arrowCounter > 0) {
+        this.arrowCounter--;
+      }
+    },
+    onEnter: function onEnter() {
+      if (this.arrowCounter > -1) {
+        this.setResult(this.items[this.arrowCounter]);
+      }
+
+      this.isFocused = false;
+      this.arrowCounter = -1;
+    },
+    onFocus: function onFocus() {
+      this.isFocused = true;
+    },
+    handleClickOutside: function handleClickOutside(evt) {
+      if (!this.$el.contains(evt.target)) {
+        this.isFocused = false;
+        this.arrowCounter = -1;
+
+        if (this.items.length === 0) {
+          this.search = "";
+        }
+      }
+    }
+  },
+  computed: {
+    isOpen: function isOpen() {
+      return (this.isLoading || this.items && this.items.length > 0 || this.items && this.items.length == 0 && this.search.length >= this.minLength && !this.isLoading) && this.isFocused;
+    }
+  },
+  mounted: function mounted() {
+    document.addEventListener("click", this.handleClickOutside);
+  },
+  destroyed: function destroyed() {
+    document.removeEventListener("click", this.handleClickOutside);
+  }
+};function normalizeComponent(template, style, script, scopeId, isFunctionalTemplate, moduleIdentifier /* server only */, shadowMode, createInjector, createInjectorSSR, createInjectorShadow) {
+    if (typeof shadowMode !== 'boolean') {
+        createInjectorSSR = createInjector;
+        createInjector = shadowMode;
+        shadowMode = false;
+    }
+    // Vue.extend constructor export interop.
+    const options = typeof script === 'function' ? script.options : script;
+    // render functions
+    if (template && template.render) {
+        options.render = template.render;
+        options.staticRenderFns = template.staticRenderFns;
+        options._compiled = true;
+        // functional template
+        if (isFunctionalTemplate) {
+            options.functional = true;
+        }
+    }
+    // scopedId
+    if (scopeId) {
+        options._scopeId = scopeId;
+    }
+    let hook;
+    if (moduleIdentifier) {
+        // server build
+        hook = function (context) {
+            // 2.3 injection
+            context =
+                context || // cached call
+                    (this.$vnode && this.$vnode.ssrContext) || // stateful
+                    (this.parent && this.parent.$vnode && this.parent.$vnode.ssrContext); // functional
+            // 2.2 with runInNewContext: true
+            if (!context && typeof __VUE_SSR_CONTEXT__ !== 'undefined') {
+                context = __VUE_SSR_CONTEXT__;
+            }
+            // inject component styles
+            if (style) {
+                style.call(this, createInjectorSSR(context));
+            }
+            // register component module identifier for async chunk inference
+            if (context && context._registeredComponents) {
+                context._registeredComponents.add(moduleIdentifier);
+            }
+        };
+        // used by ssr in case component is cached and beforeCreate
+        // never gets called
+        options._ssrRegister = hook;
+    }
+    else if (style) {
+        hook = shadowMode
+            ? function (context) {
+                style.call(this, createInjectorShadow(context, this.$root.$options.shadowRoot));
+            }
+            : function (context) {
+                style.call(this, createInjector(context));
+            };
+    }
+    if (hook) {
+        if (options.functional) {
+            // register for functional component in vue file
+            const originalRender = options.render;
+            options.render = function renderWithStyleInjection(h, context) {
+                hook.call(context);
+                return originalRender(h, context);
+            };
+        }
+        else {
+            // inject component registration as beforeCreate hook
+            const existing = options.beforeCreate;
+            options.beforeCreate = existing ? [].concat(existing, hook) : [hook];
+        }
+    }
+    return script;
+}function createInjectorSSR(context) {
+    if (!context && typeof __VUE_SSR_CONTEXT__ !== 'undefined') {
+        context = __VUE_SSR_CONTEXT__;
+    }
+    if (!context)
+        return () => { };
+    if (!('styles' in context)) {
+        context._styles = context._styles || {};
+        Object.defineProperty(context, 'styles', {
+            enumerable: true,
+            get: () => context._renderStyles(context._styles)
+        });
+        context._renderStyles = context._renderStyles || renderStyles;
+    }
+    return (id, style) => addStyle(id, style, context);
+}
+function addStyle(id, css, context) {
+    const group = css.media || 'default' ;
+    const style = context._styles[group] || (context._styles[group] = { ids: [], css: '' });
+    if (!style.ids.includes(id)) {
+        style.media = css.media;
+        style.ids.push(id);
+        let code = css.source;
+        style.css += code + '\n';
+    }
+}
+function renderStyles(styles) {
+    let css = '';
+    for (const key in styles) {
+        const style = styles[key];
+        css +=
+            '<style data-vue-ssr-id="' +
+                Array.from(style.ids).join(' ') +
+                '"' +
+                (style.media ? ' media="' + style.media + '"' : '') +
+                '>' +
+                style.css +
+                '</style>';
+    }
+    return css;
+}/* script */
+var __vue_script__ = script;
+/* template */
+
+var __vue_render__ = function __vue_render__() {
+  var _vm = this;
+
+  var _h = _vm.$createElement;
+
+  var _c = _vm._self._c || _h;
+
+  return _c('div', {
+    staticClass: "autocomplete"
+  }, [_vm._ssrNode("<input type=\"text\"" + _vm._ssrAttr("placeholder", _vm.placeholder) + _vm._ssrAttr("value", _vm.search) + " data-v-47bace1b> <ul id=\"autocomplete-results\" class=\"autocomplete-results\"" + _vm._ssrStyle(null, null, {
+    display: _vm.isOpen ? '' : 'none'
+  }) + " data-v-47bace1b>" + (_vm.isLoading ? "<li class=\"loading\" data-v-47bace1b>" + _vm._ssrEscape("\n      " + _vm._s(_vm.isLoadingMessage) + "\n    ") + "</li>" : _vm._ssrList(_vm.items, function (item, i) {
+    return "<li" + _vm._ssrClass("autocomplete-result", {
+      'is-active': i === _vm.arrowCounter
+    }) + " data-v-47bace1b>" + _vm._ssrEscape("\n      " + _vm._s(_vm.getDisplayValue(item)) + "\n    ") + "</li>";
+  })) + " " + (_vm.items && _vm.items.length == 0 && _vm.search.length >= _vm.minLength && !_vm.isLoading ? "<li data-v-47bace1b>" + _vm._ssrEscape("\n      " + _vm._s(_vm.noResultsMessage) + "\n    ") + "</li>" : "<!---->") + "</ul>")]);
+};
+
+var __vue_staticRenderFns__ = [];
+/* style */
+
+var __vue_inject_styles__ = function __vue_inject_styles__(inject) {
+  if (!inject) return;
+  inject("data-v-47bace1b_0", {
+    source: ".autocomplete[data-v-47bace1b]{position:relative;width:100%}.autocomplete input[data-v-47bace1b]{width:97%;height:1.5rem}.autocomplete-results[data-v-47bace1b]{padding:0;margin:0;border:1px solid #eee;height:120px;overflow:auto;width:100%;position:absolute;background-color:#fff;z-index:8;box-shadow:#000 0 .1rem .3rem}.autocomplete li[data-v-47bace1b]{padding:0 .5rem}.autocomplete-result[data-v-47bace1b]{list-style:none;text-align:left;padding:4px 2px;cursor:pointer}.autocomplete-result.is-active[data-v-47bace1b],.autocomplete-result[data-v-47bace1b]:hover{background-color:#4aae9b;color:#fff}",
+    map: undefined,
+    media: undefined
+  });
+};
+/* scoped */
+
+
+var __vue_scope_id__ = "data-v-47bace1b";
+/* module identifier */
+
+var __vue_module_identifier__ = "data-v-47bace1b";
+/* functional template */
+
+var __vue_is_functional_template__ = false;
+/* style inject shadow dom */
+
+var __vue_component__ = /*#__PURE__*/normalizeComponent({
+  render: __vue_render__,
+  staticRenderFns: __vue_staticRenderFns__
+}, __vue_inject_styles__, __vue_script__, __vue_scope_id__, __vue_is_functional_template__, __vue_module_identifier__, false, undefined, createInjectorSSR, undefined);// Import vue component
+// IIFE injects install function into component, allowing component
+// to be registered via Vue.use() as well as Vue.component(),
+
+var component = /*#__PURE__*/(function () {
+  // Get component instance
+  var installable = __vue_component__; // Attach install function executed by Vue.use()
+
+  installable.install = function (Vue) {
+    Vue.component('VueSimpleAutocomplete', installable);
+  };
+
+  return installable;
+})(); // It's possible to expose named exports when writing components that can
+// also be used as directives, etc. - eg. import { RollupDemoDirective } from 'rollup-demo';
+// export const RollupDemoDirective = directive;
+var namedExports=/*#__PURE__*/Object.freeze({__proto__:null,'default': component});// only expose one global var, with named exports exposed as properties of
+// that global var (eg. plugin.namedExport)
+
+Object.entries(namedExports).forEach(function (_ref) {
+  var _ref2 = _slicedToArray(_ref, 2),
+      exportName = _ref2[0],
+      exported = _ref2[1];
+
+  if (exportName !== 'default') component[exportName] = exported;
+});module.exports=component;
