@@ -28,7 +28,7 @@ This component is used as a base to create your own autocomplete. For example, I
 
 <script>
 import originProcessApi from "../../services/api/originProcessApi";
-import VueSimpleAutocomplete from "VueSimpleAutocomplete";
+import VueSimpleAutocomplete from "vue-simple-autocomplete";
 
 export default {
   name: "originProcessoAutocomplete",
