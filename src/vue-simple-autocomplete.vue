@@ -26,11 +26,7 @@
       </li>
       <li
         v-if="
-          items &&
-            items.length == 0 &&
-            search.length >= minLength &&
-            !isLoading &&
-            startedTyping
+          items && items.length == 0 && search.length >= minLength && !isLoading
         "
       >
         {{ noResultsMessage }}
@@ -142,7 +138,8 @@ export default {
             this.items.length == 0 &&
             this.search.length >= this.minLength &&
             !this.isLoading)) &&
-        this.isFocused
+        this.isFocused &&
+        this.startedTyping
       );
     },
   },
