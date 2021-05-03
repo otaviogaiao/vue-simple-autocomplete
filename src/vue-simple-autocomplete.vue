@@ -76,6 +76,7 @@ export default {
       search: this.getDisplayValue(this.selectedItem),
       arrowCounter: 0,
       isFocused: false,
+      startedTyping: false,
     };
   },
   methods: {
@@ -86,13 +87,14 @@ export default {
       } else {
         this.$emit("change", this.search);
       }
-
+      this.startedTyping = true; //indica que usuario comecou a digitar
       this.isFocused = true;
     },
     setResult(result) {
       this.search = this.getDisplayValue(result);
       this.isFocused = false;
       this.arrowCounter = -1;
+      this.startedTyping = false; //usuario terminou de digitar
       this.$emit("value-selected", result);
     },
     onArrowDown() {
@@ -110,6 +112,7 @@ export default {
         this.setResult(this.items[this.arrowCounter]);
       }
 
+      this.startedTyping = false; //usuario terminou de digitar
       this.isFocused = false;
       this.arrowCounter = -1;
     },
@@ -120,7 +123,7 @@ export default {
       if (!this.$el.contains(evt.target)) {
         this.isFocused = false;
         this.arrowCounter = -1;
-        if (this.items.length === 0) {
+        if (this.items.length === 0 && this.startedTyping) {
           this.search = "";
         }
       }
