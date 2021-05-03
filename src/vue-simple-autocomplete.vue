@@ -26,7 +26,11 @@
       </li>
       <li
         v-if="
-          items && items.length == 0 && search.length >= minLength && !isLoading
+          items &&
+            items.length == 0 &&
+            search.length >= minLength &&
+            !isLoading &&
+            startedTyping
         "
       >
         {{ noResultsMessage }}
