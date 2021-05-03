@@ -107,7 +107,9 @@ export default {
         this.arrowCounter--;
       }
     },
-    onEnter() {
+    onEnter(event) {
+      event.preventDefault();
+
       if (this.arrowCounter > -1) {
         this.setResult(this.items[this.arrowCounter]);
       }
