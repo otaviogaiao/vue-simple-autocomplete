@@ -1,17 +1,23 @@
 <script>
-import Vue from 'vue';
-import VueSimpleAutocomplete from '@/vue-simple-autocomplete.vue';
+import Vue from "vue";
+import ExampleAutocomplete from "./ExampleAutocomplete.vue";
 
 export default Vue.extend({
-  name: 'ServeDev',
+  name: "ServeDev",
   components: {
-    VueSimpleAutocomplete
-  }
+    ExampleAutocomplete,
+  },
+  data() {
+    return {
+      country: null,
+    };
+  },
 });
 </script>
 
 <template>
   <div id="app">
-    <vue-simple-autocomplete />
+    <h1>Autocomplete</h1>
+    <ExampleAutocomplete v-model="country" />
   </div>
 </template>
