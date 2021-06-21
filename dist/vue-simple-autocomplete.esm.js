@@ -87,7 +87,11 @@ var script = {
 
   watch: {
     selectedItem: function (newValue, oldValue) {
-      if (typeof newValue == "object" && Object.keys(newValue).length > 0 || Array.isArray(newValue)) {
+      if (newValue != oldValue && !newValue) {
+        this.search = this.getDisplayValue(newValue);
+      }
+
+      if (newValue && typeof newValue == "object" && Object.keys(newValue).length > 0 || Array.isArray(newValue)) {
         this.search = this.getDisplayValue(newValue);
         return;
       }
@@ -396,8 +400,8 @@ var __vue_staticRenderFns__ = [];
 
 const __vue_inject_styles__ = function (inject) {
   if (!inject) return;
-  inject("data-v-58cc04c8_0", {
-    source: ".autocomplete[data-v-58cc04c8]{position:relative;width:100%}.autocomplete input[data-v-58cc04c8]{width:97%;height:1.5rem}.autocomplete-results[data-v-58cc04c8]{padding:0;margin:0;border:1px solid #eee;height:120px;overflow:auto;width:100%;position:absolute;background-color:#fff;z-index:8;box-shadow:#000 0 .1rem .3rem}.autocomplete li[data-v-58cc04c8]{padding:0 .5rem}.autocomplete-result[data-v-58cc04c8]{list-style:none;text-align:left;padding:4px 2px;cursor:pointer}.autocomplete-result.is-active[data-v-58cc04c8],.autocomplete-result[data-v-58cc04c8]:hover{background-color:#4aae9b;color:#fff}",
+  inject("data-v-0e129b92_0", {
+    source: ".autocomplete[data-v-0e129b92]{position:relative;width:100%}.autocomplete input[data-v-0e129b92]{width:97%;height:1.5rem}.autocomplete-results[data-v-0e129b92]{padding:0;margin:0;border:1px solid #eee;height:120px;overflow:auto;width:100%;position:absolute;background-color:#fff;z-index:8;box-shadow:#000 0 .1rem .3rem}.autocomplete li[data-v-0e129b92]{padding:0 .5rem}.autocomplete-result[data-v-0e129b92]{list-style:none;text-align:left;padding:4px 2px;cursor:pointer}.autocomplete-result.is-active[data-v-0e129b92],.autocomplete-result[data-v-0e129b92]:hover{background-color:#4aae9b;color:#fff}",
     map: undefined,
     media: undefined
   });
@@ -405,7 +409,7 @@ const __vue_inject_styles__ = function (inject) {
 /* scoped */
 
 
-const __vue_scope_id__ = "data-v-58cc04c8";
+const __vue_scope_id__ = "data-v-0e129b92";
 /* module identifier */
 
 const __vue_module_identifier__ = undefined;

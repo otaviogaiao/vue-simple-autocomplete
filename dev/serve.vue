@@ -20,6 +20,11 @@ export default Vue.extend({
       };
     }, 2000);
   },
+  methods: {
+    clear() {
+      this.country = null;
+    },
+  },
 });
 </script>
 
@@ -27,5 +32,6 @@ export default Vue.extend({
   <div id="app">
     <h1>Autocomplete</h1>
     <ExampleAutocomplete v-model="country" />
+    <button @click="clear">Clear</button>
   </div>
 </template>

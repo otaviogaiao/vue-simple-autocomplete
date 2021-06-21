@@ -86,8 +86,14 @@ export default {
   },
   watch: {
     selectedItem: function(newValue, oldValue) {
+      if (newValue != oldValue && !newValue) {
+        this.search = this.getDisplayValue(newValue);
+      }
+
       if (
-        (typeof newValue == "object" && Object.keys(newValue).length > 0) ||
+        (newValue &&
+          typeof newValue == "object" &&
+          Object.keys(newValue).length > 0) ||
         Array.isArray(newValue)
       ) {
         this.search = this.getDisplayValue(newValue);
