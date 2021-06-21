@@ -85,6 +85,13 @@ var script = {
     };
   },
 
+  watch: {
+    selectedItem: function (newValue, oldValue) {
+      if (newValue !== oldValue) {
+        this.search = this.getDisplayValue(newValue);
+      }
+    }
+  },
   methods: {
     onChange() {
       // Let's warn the parent that a change was made
@@ -384,8 +391,8 @@ var __vue_staticRenderFns__ = [];
 
 const __vue_inject_styles__ = function (inject) {
   if (!inject) return;
-  inject("data-v-f618605e_0", {
-    source: ".autocomplete[data-v-f618605e]{position:relative;width:100%}.autocomplete input[data-v-f618605e]{width:97%;height:1.5rem}.autocomplete-results[data-v-f618605e]{padding:0;margin:0;border:1px solid #eee;height:120px;overflow:auto;width:100%;position:absolute;background-color:#fff;z-index:8;box-shadow:#000 0 .1rem .3rem}.autocomplete li[data-v-f618605e]{padding:0 .5rem}.autocomplete-result[data-v-f618605e]{list-style:none;text-align:left;padding:4px 2px;cursor:pointer}.autocomplete-result.is-active[data-v-f618605e],.autocomplete-result[data-v-f618605e]:hover{background-color:#4aae9b;color:#fff}",
+  inject("data-v-37b7444b_0", {
+    source: ".autocomplete[data-v-37b7444b]{position:relative;width:100%}.autocomplete input[data-v-37b7444b]{width:97%;height:1.5rem}.autocomplete-results[data-v-37b7444b]{padding:0;margin:0;border:1px solid #eee;height:120px;overflow:auto;width:100%;position:absolute;background-color:#fff;z-index:8;box-shadow:#000 0 .1rem .3rem}.autocomplete li[data-v-37b7444b]{padding:0 .5rem}.autocomplete-result[data-v-37b7444b]{list-style:none;text-align:left;padding:4px 2px;cursor:pointer}.autocomplete-result.is-active[data-v-37b7444b],.autocomplete-result[data-v-37b7444b]:hover{background-color:#4aae9b;color:#fff}",
     map: undefined,
     media: undefined
   });
@@ -393,7 +400,7 @@ const __vue_inject_styles__ = function (inject) {
 /* scoped */
 
 
-const __vue_scope_id__ = "data-v-f618605e";
+const __vue_scope_id__ = "data-v-37b7444b";
 /* module identifier */
 
 const __vue_module_identifier__ = undefined;

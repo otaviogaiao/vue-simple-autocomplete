@@ -12,6 +12,14 @@ export default Vue.extend({
       country: null,
     };
   },
+  mounted() {
+    setTimeout(() => {
+      this.country = {
+        id: 1,
+        name: "Brazil",
+      };
+    }, 2000);
+  },
 });
 </script>
 

@@ -84,6 +84,13 @@ export default {
       startedTyping: false,
     };
   },
+  watch: {
+    selectedItem: function(newValue, oldValue) {
+      if (newValue !== oldValue) {
+        this.search = this.getDisplayValue(newValue);
+      }
+    },
+  },
   methods: {
     onChange() {
       // Let's warn the parent that a change was made
