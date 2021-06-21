@@ -60,7 +60,10 @@ export default {
       type: Function,
       default: (item) => item,
     },
-    selectedItem: {},
+    selectedItem: {
+      type: Function,
+      default: () => {},
+    },
     minLength: {
       type: Number,
       default: 1,
