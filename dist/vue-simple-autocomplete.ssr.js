@@ -1,4 +1,20 @@
-'use strict';function _slicedToArray(arr, i) {
+'use strict';function _typeof(obj) {
+  "@babel/helpers - typeof";
+
+  if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") {
+    _typeof = function (obj) {
+      return typeof obj;
+    };
+  } else {
+    _typeof = function (obj) {
+      return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj;
+    };
+  }
+
+  return _typeof(obj);
+}
+
+function _slicedToArray(arr, i) {
   return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest();
 }
 
@@ -146,7 +162,12 @@ var script = {
   },
   watch: {
     selectedItem: function selectedItem(newValue, oldValue) {
-      if (newValue !== oldValue) {
+      if (_typeof(newValue) == "object" && Object.keys(newValue).length > 0 || Array.isArray(newValue)) {
+        this.search = this.getDisplayValue(newValue);
+        return;
+      }
+
+      if (_typeof(newValue) != "object" && !Array.isArray(newValue) && newValue !== oldValue) {
         this.search = this.getDisplayValue(newValue);
       }
     }
@@ -345,13 +366,13 @@ var __vue_render__ = function __vue_render__() {
 
   return _c('div', {
     staticClass: "autocomplete"
-  }, [_vm._ssrNode("<input type=\"text\"" + _vm._ssrAttr("placeholder", _vm.placeholder) + _vm._ssrAttr("value", _vm.search) + " data-v-37b7444b> <ul id=\"autocomplete-results\" class=\"autocomplete-results\"" + _vm._ssrStyle(null, null, {
+  }, [_vm._ssrNode("<input type=\"text\"" + _vm._ssrAttr("placeholder", _vm.placeholder) + _vm._ssrAttr("value", _vm.search) + " data-v-58cc04c8> <ul id=\"autocomplete-results\" class=\"autocomplete-results\"" + _vm._ssrStyle(null, null, {
     display: _vm.isOpen ? '' : 'none'
-  }) + " data-v-37b7444b>" + (_vm.isLoading ? "<li class=\"loading\" data-v-37b7444b>" + _vm._ssrEscape("\n      " + _vm._s(_vm.isLoadingMessage) + "\n    ") + "</li>" : _vm._ssrList(_vm.items, function (item, i) {
+  }) + " data-v-58cc04c8>" + (_vm.isLoading ? "<li class=\"loading\" data-v-58cc04c8>" + _vm._ssrEscape("\n      " + _vm._s(_vm.isLoadingMessage) + "\n    ") + "</li>" : _vm._ssrList(_vm.items, function (item, i) {
     return "<li" + _vm._ssrClass("autocomplete-result", {
       'is-active': i === _vm.arrowCounter
-    }) + " data-v-37b7444b>" + _vm._ssrEscape("\n      " + _vm._s(_vm.getDisplayValue(item)) + "\n    ") + "</li>";
-  })) + " " + (_vm.items && _vm.items.length == 0 && _vm.search.length >= _vm.minLength && !_vm.isLoading ? "<li data-v-37b7444b>" + _vm._ssrEscape("\n      " + _vm._s(_vm.noResultsMessage) + "\n    ") + "</li>" : "<!---->") + "</ul>")]);
+    }) + " data-v-58cc04c8>" + _vm._ssrEscape("\n      " + _vm._s(_vm.getDisplayValue(item)) + "\n    ") + "</li>";
+  })) + " " + (_vm.items && _vm.items.length == 0 && _vm.search.length >= _vm.minLength && !_vm.isLoading ? "<li data-v-58cc04c8>" + _vm._ssrEscape("\n      " + _vm._s(_vm.noResultsMessage) + "\n    ") + "</li>" : "<!---->") + "</ul>")]);
 };
 
 var __vue_staticRenderFns__ = [];
@@ -359,8 +380,8 @@ var __vue_staticRenderFns__ = [];
 
 var __vue_inject_styles__ = function __vue_inject_styles__(inject) {
   if (!inject) return;
-  inject("data-v-37b7444b_0", {
-    source: ".autocomplete[data-v-37b7444b]{position:relative;width:100%}.autocomplete input[data-v-37b7444b]{width:97%;height:1.5rem}.autocomplete-results[data-v-37b7444b]{padding:0;margin:0;border:1px solid #eee;height:120px;overflow:auto;width:100%;position:absolute;background-color:#fff;z-index:8;box-shadow:#000 0 .1rem .3rem}.autocomplete li[data-v-37b7444b]{padding:0 .5rem}.autocomplete-result[data-v-37b7444b]{list-style:none;text-align:left;padding:4px 2px;cursor:pointer}.autocomplete-result.is-active[data-v-37b7444b],.autocomplete-result[data-v-37b7444b]:hover{background-color:#4aae9b;color:#fff}",
+  inject("data-v-58cc04c8_0", {
+    source: ".autocomplete[data-v-58cc04c8]{position:relative;width:100%}.autocomplete input[data-v-58cc04c8]{width:97%;height:1.5rem}.autocomplete-results[data-v-58cc04c8]{padding:0;margin:0;border:1px solid #eee;height:120px;overflow:auto;width:100%;position:absolute;background-color:#fff;z-index:8;box-shadow:#000 0 .1rem .3rem}.autocomplete li[data-v-58cc04c8]{padding:0 .5rem}.autocomplete-result[data-v-58cc04c8]{list-style:none;text-align:left;padding:4px 2px;cursor:pointer}.autocomplete-result.is-active[data-v-58cc04c8],.autocomplete-result[data-v-58cc04c8]:hover{background-color:#4aae9b;color:#fff}",
     map: undefined,
     media: undefined
   });
@@ -368,10 +389,10 @@ var __vue_inject_styles__ = function __vue_inject_styles__(inject) {
 /* scoped */
 
 
-var __vue_scope_id__ = "data-v-37b7444b";
+var __vue_scope_id__ = "data-v-58cc04c8";
 /* module identifier */
 
-var __vue_module_identifier__ = "data-v-37b7444b";
+var __vue_module_identifier__ = "data-v-58cc04c8";
 /* functional template */
 
 var __vue_is_functional_template__ = false;

@@ -86,7 +86,19 @@ export default {
   },
   watch: {
     selectedItem: function(newValue, oldValue) {
-      if (newValue !== oldValue) {
+      if (
+        (typeof newValue == "object" && Object.keys(newValue).length > 0) ||
+        Array.isArray(newValue)
+      ) {
+        this.search = this.getDisplayValue(newValue);
+        return;
+      }
+
+      if (
+        typeof newValue != "object" &&
+        !Array.isArray(newValue) &&
+        newValue !== oldValue
+      ) {
         this.search = this.getDisplayValue(newValue);
       }
     },
