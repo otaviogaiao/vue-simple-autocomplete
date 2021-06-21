@@ -121,7 +121,7 @@ var script = {
       }
     },
     selectedItem: {
-      type: Function,
+      type: Object,
       default: function _default() {
         return {};
       }
@@ -338,13 +338,13 @@ var __vue_render__ = function __vue_render__() {
 
   return _c('div', {
     staticClass: "autocomplete"
-  }, [_vm._ssrNode("<input type=\"text\"" + _vm._ssrAttr("placeholder", _vm.placeholder) + _vm._ssrAttr("value", _vm.search) + " data-v-5a349f6a> <ul id=\"autocomplete-results\" class=\"autocomplete-results\"" + _vm._ssrStyle(null, null, {
+  }, [_vm._ssrNode("<input type=\"text\"" + _vm._ssrAttr("placeholder", _vm.placeholder) + _vm._ssrAttr("value", _vm.search) + " data-v-f618605e> <ul id=\"autocomplete-results\" class=\"autocomplete-results\"" + _vm._ssrStyle(null, null, {
     display: _vm.isOpen ? '' : 'none'
-  }) + " data-v-5a349f6a>" + (_vm.isLoading ? "<li class=\"loading\" data-v-5a349f6a>" + _vm._ssrEscape("\n      " + _vm._s(_vm.isLoadingMessage) + "\n    ") + "</li>" : _vm._ssrList(_vm.items, function (item, i) {
+  }) + " data-v-f618605e>" + (_vm.isLoading ? "<li class=\"loading\" data-v-f618605e>" + _vm._ssrEscape("\n      " + _vm._s(_vm.isLoadingMessage) + "\n    ") + "</li>" : _vm._ssrList(_vm.items, function (item, i) {
     return "<li" + _vm._ssrClass("autocomplete-result", {
       'is-active': i === _vm.arrowCounter
-    }) + " data-v-5a349f6a>" + _vm._ssrEscape("\n      " + _vm._s(_vm.getDisplayValue(item)) + "\n    ") + "</li>";
-  })) + " " + (_vm.items && _vm.items.length == 0 && _vm.search.length >= _vm.minLength && !_vm.isLoading ? "<li data-v-5a349f6a>" + _vm._ssrEscape("\n      " + _vm._s(_vm.noResultsMessage) + "\n    ") + "</li>" : "<!---->") + "</ul>")]);
+    }) + " data-v-f618605e>" + _vm._ssrEscape("\n      " + _vm._s(_vm.getDisplayValue(item)) + "\n    ") + "</li>";
+  })) + " " + (_vm.items && _vm.items.length == 0 && _vm.search.length >= _vm.minLength && !_vm.isLoading ? "<li data-v-f618605e>" + _vm._ssrEscape("\n      " + _vm._s(_vm.noResultsMessage) + "\n    ") + "</li>" : "<!---->") + "</ul>")]);
 };
 
 var __vue_staticRenderFns__ = [];
@@ -352,8 +352,8 @@ var __vue_staticRenderFns__ = [];
 
 var __vue_inject_styles__ = function __vue_inject_styles__(inject) {
   if (!inject) return;
-  inject("data-v-5a349f6a_0", {
-    source: ".autocomplete[data-v-5a349f6a]{position:relative;width:100%}.autocomplete input[data-v-5a349f6a]{width:97%;height:1.5rem}.autocomplete-results[data-v-5a349f6a]{padding:0;margin:0;border:1px solid #eee;height:120px;overflow:auto;width:100%;position:absolute;background-color:#fff;z-index:8;box-shadow:#000 0 .1rem .3rem}.autocomplete li[data-v-5a349f6a]{padding:0 .5rem}.autocomplete-result[data-v-5a349f6a]{list-style:none;text-align:left;padding:4px 2px;cursor:pointer}.autocomplete-result.is-active[data-v-5a349f6a],.autocomplete-result[data-v-5a349f6a]:hover{background-color:#4aae9b;color:#fff}",
+  inject("data-v-f618605e_0", {
+    source: ".autocomplete[data-v-f618605e]{position:relative;width:100%}.autocomplete input[data-v-f618605e]{width:97%;height:1.5rem}.autocomplete-results[data-v-f618605e]{padding:0;margin:0;border:1px solid #eee;height:120px;overflow:auto;width:100%;position:absolute;background-color:#fff;z-index:8;box-shadow:#000 0 .1rem .3rem}.autocomplete li[data-v-f618605e]{padding:0 .5rem}.autocomplete-result[data-v-f618605e]{list-style:none;text-align:left;padding:4px 2px;cursor:pointer}.autocomplete-result.is-active[data-v-f618605e],.autocomplete-result[data-v-f618605e]:hover{background-color:#4aae9b;color:#fff}",
     map: undefined,
     media: undefined
   });
@@ -361,10 +361,10 @@ var __vue_inject_styles__ = function __vue_inject_styles__(inject) {
 /* scoped */
 
 
-var __vue_scope_id__ = "data-v-5a349f6a";
+var __vue_scope_id__ = "data-v-f618605e";
 /* module identifier */
 
-var __vue_module_identifier__ = "data-v-5a349f6a";
+var __vue_module_identifier__ = "data-v-f618605e";
 /* functional template */
 
 var __vue_is_functional_template__ = false;

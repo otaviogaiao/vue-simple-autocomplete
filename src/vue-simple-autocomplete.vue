@@ -61,7 +61,7 @@ export default {
       default: (item) => item,
     },
     selectedItem: {
-      type: Function,
+      type: Object,
       default: () => {
         return {};
       },
