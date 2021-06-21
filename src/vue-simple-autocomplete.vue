@@ -62,7 +62,9 @@ export default {
     },
     selectedItem: {
       type: Function,
-      default: () => {},
+      default: () => {
+        return {};
+      },
     },
     minLength: {
       type: Number,

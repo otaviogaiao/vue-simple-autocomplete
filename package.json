@@ -1,6 +1,6 @@
 {
   "name": "vue-simple-autocomplete",
-  "version": "0.9.4",
+  "version": "0.9.5",
   "description": "Simple autocomplete for Vue 2",
 
   "main": "dist/vue-simple-autocomplete.ssr.js",
