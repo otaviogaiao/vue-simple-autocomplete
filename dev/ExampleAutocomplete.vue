@@ -65,7 +65,7 @@ export default {
     },
     displayCountry(country) {
       if (country && country != "" && country.name) {
-        return country.name;
+        return `País: ${country.name}`;
       }
 
       return "";

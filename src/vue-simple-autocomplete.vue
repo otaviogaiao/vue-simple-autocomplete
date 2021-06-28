@@ -78,7 +78,7 @@ export default {
   data() {
     return {
       results: [],
-      search: this.getDisplayValue(this.selectedItem),
+      search: this.getDisplayValue(this.selectedItem) || "",
       arrowCounter: 0,
       isFocused: false,
       startedTyping: false,
@@ -112,7 +112,7 @@ export default {
   methods: {
     onChange() {
       // Let's warn the parent that a change was made
-      if (this.search.length < this.minLength) {
+      if (this.search && this.search.length < this.minLength) {
         this.$emit("change", "");
       } else {
         this.$emit("change", this.search);
